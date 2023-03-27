@@ -1,0 +1,14 @@
+{% extends 'order_app/base.html' %}
+{% block content %}
+    {% for tag in searched_tags %}
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <small class="text-muted">{{ tag.date_placed|date:'F d, Y' }}</small>
+        </div>
+        <h2><a class="article-title" href="{% url 'order-detail' tag.id %}">{{ tag.title }}</a></h2>
+        <p class="article-content">{{ tag.content }}</p>
+        </div>
+    </article>
+    {% endfor %}
+{% endblock content %}

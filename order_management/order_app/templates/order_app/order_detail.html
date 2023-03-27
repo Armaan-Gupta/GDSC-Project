@@ -1,0 +1,21 @@
+{% extends 'order_app/base.html' %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_placed|date:'F d, Y' }}</small>
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href = "{% url 'order-update' object.id %}">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href = "{% url 'order-delete' object.id %}">Delete</a>
+            </div>
+        </div>
+        <h2 class = 'article-title'>{{ object.title }}</h2>
+        <p class="article-content">Customer_name: {{ object.customer }}</p>
+        <p class="article-content">{{ object.content }}</p>
+        {% for tag in order.tags.all %}
+            <p>{{tag}}</p>
+        {% endfor %}
+        </div>
+    </article>
+{% endblock content %}

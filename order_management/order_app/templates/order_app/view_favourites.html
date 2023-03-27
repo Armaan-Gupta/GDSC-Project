@@ -1,0 +1,14 @@
+{% extends 'order_app/base.html' %}
+{% block content %}
+    {% for fav in favourites %}
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <small class="text-muted">{{ fav.date_placed|date:'F d, Y' }}</small>
+        </div>
+        <h2><a class="article-title" href="{% url 'order-detail' fav.id %}">{{ fav.title }}</a></h2>
+        <p class="article-content">{{ fav.content }}</p>
+        </div>
+    </article>
+    {% endfor %}
+{% endblock content %}

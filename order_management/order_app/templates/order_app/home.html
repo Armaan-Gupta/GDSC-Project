@@ -1,0 +1,21 @@
+{% extends 'order_app/base.html' %}
+{% block content %}
+    {% for order in orders %}
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <small class="text-muted">{{ order.date_placed|date:'F d, Y' }}</small>
+        </div>
+        <h2><a class="article-title" href="{% url 'order-detail' order.id %}">{{ order.title }}</a></h2>
+        <p class="article-content">Customer_name: {{ order.customer }}</p>
+        <p class="article-content">{{ order.content }}</p>
+        {% for tag in order.tags.all %}
+            <p>{{tag}}</p>
+        {% endfor %}
+        </div>
+        <div class="float-end">
+            <a class="btn btn-primary" href="{% url 'order-favourites' order.id %}">Add to Favourites</a>
+        </div>
+    </article>
+    {% endfor %}
+{% endblock content %}
